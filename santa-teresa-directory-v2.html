@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Santa Teresa Directory — Nicoya Peninsula, Costa Rica</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700;800;900&family=Barlow:wght@300;400;500&family=EB+Garamond:ital,wght@0,400;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: 'Barlow', sans-serif; font-weight: 300; background: #ffffff; color: #0a0a0a; overflow-x: hidden; }
+:root { --black: #0a0a0a; --white: #ffffff; --gold: #c9a84c; --gray-line: #e0e0e0; --gray-text: #555555; --off-white: #f7f5f2; }
+.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 999; display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 3rem; transition: background 0.3s; }
+.nav.dark { background: rgba(10,10,10,0.96); backdrop-filter: blur(10px); }
+.nav-logo { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.1rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white); text-decoration: none; }
+.nav-links { display: flex; align-items: center; gap: 2rem; }
+.nav-links a { font-family: 'Barlow Condensed', sans-serif; font-weight: 500; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.75); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover { color: var(--white); }
+.btn { display: inline-block; font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; padding: 0.85rem 2rem; border: 1px solid; background: transparent; cursor: pointer; transition: background 0.2s, color 0.2s; line-height: 1; }
+.btn-white { border-color: var(--white); color: var(--white); } .btn-white:hover { background: var(--white); color: var(--black); }
+.btn-gold { border-color: var(--gold); color: var(--gold); } .btn-gold:hover { background: var(--gold); color: var(--black); }
+.btn-black { border-color: var(--black); color: var(--black); } .btn-black:hover { background: var(--black); color: var(--white); }
+.btn-ghost { border-color: rgba(255,255,255,0.35); color: rgba(255,255,255,0.7); } .btn-ghost:hover { border-color: var(--white); color: var(--white); }
+.btn-nav { border: 1px solid var(--white); color: var(--white); padding: 0.5rem 1.2rem; } .btn-nav:hover { background: var(--white); color: var(--black); }
+.marquee { background: var(--gold); padding: 0.85rem 0; overflow: hidden; white-space: nowrap; }
+.marquee-track { display: inline-flex; animation: marquee-scroll 32s linear infinite; }
+.marquee-track span { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--black); padding: 0 2rem; }
+@keyframes marquee-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.section { padding: 7rem 3rem; }
+.section-white { background: var(--white); }
+.section-offwhite { background: var(--off-white); }
+.section-black { background: var(--black); color: var(--white); }
+.label { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 0.7rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 2.5rem; display: block; }
+.heading-xl { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(4rem, 12vw, 12rem); line-height: 0.85; text-transform: uppercase; letter-spacing: -0.02em; margin-bottom: 2rem; }
+.heading-lg { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: clamp(2rem, 4vw, 3.8rem); line-height: 0.95; text-transform: uppercase; letter-spacing: -0.01em; margin-bottom: 2rem; }
+.heading-md { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: clamp(1.3rem, 2vw, 1.8rem); line-height: 1.05; text-transform: uppercase; letter-spacing: 0.01em; margin-bottom: 0.75rem; }
+.body-text { font-size: 0.93rem; line-height: 1.88; }
+.body-text p { margin-bottom: 1.3rem; }
+.body-text.light { color: rgba(255,255,255,0.58); }
+.body-text.dark { color: #3a3a3a; }
+.inner { max-width: 1300px; margin: 0 auto; }
+.inner-mid { max-width: 960px; margin: 0 auto; }
+.inner-narrow { max-width: 780px; margin: 0 auto; }
+
+/* HERO */
+.hero { position: relative; min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 3rem 5rem; overflow: hidden; background-size: cover; background-position: center; background-color: var(--black); }
+.hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.85) 100%); }
+.hero-content { position: relative; z-index: 2; }
+.hero-eyebrow { font-family: 'Barlow Condensed', sans-serif; font-weight: 500; font-size: 0.75rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; opacity: 0; animation: hero-up 0.8s 0.2s forwards; }
+.hero-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(5rem, 16vw, 16rem); line-height: 0.82; letter-spacing: -0.02em; text-transform: uppercase; color: var(--white); margin-bottom: 2rem; opacity: 0; animation: hero-up 0.8s 0.35s forwards; }
+.hero-subtitle { font-family: 'EB Garamond', serif; font-style: italic; font-size: clamp(1rem, 1.8vw, 1.35rem); color: rgba(255,255,255,0.7); margin-bottom: 2rem; max-width: 600px; opacity: 0; animation: hero-up 0.8s 0.5s forwards; }
+.hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; opacity: 0; animation: hero-up 0.8s 0.95s forwards; }
+@keyframes hero-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+/* SEARCH BAR */
+.search-bar { background: var(--white); padding: 2.5rem 3rem; border-bottom: 1px solid var(--gray-line); position: sticky; top: 0; z-index: 90; box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
+.search-inner { max-width: 1300px; margin: 0 auto; display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+.search-input { flex: 1; min-width: 200px; font-family: 'Barlow', sans-serif; font-size: 0.88rem; padding: 0.8rem 1.2rem; border: 1px solid var(--gray-line); background: var(--off-white); color: var(--black); outline: none; transition: border-color 0.2s; }
+.search-input:focus { border-color: var(--gold); }
+.search-input::placeholder { color: #aaa; }
+.filter-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.filter-tag { font-family: 'Barlow Condensed', sans-serif; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.45rem 1rem; border: 1px solid var(--gray-line); background: transparent; cursor: pointer; color: #888; transition: all 0.2s; }
+.filter-tag:hover, .filter-tag.active { border-color: var(--gold); color: var(--gold); background: rgba(201,168,76,0.06); }
+
+/* CATEGORY SECTIONS */
+.cat-section { padding: 5rem 3rem; border-bottom: 1px solid var(--gray-line); }
+.cat-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--gray-line); }
+.cat-title-group { display: flex; align-items: center; gap: 1.5rem; }
+.cat-icon { font-size: 2rem; line-height: 1; }
+.cat-name { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: clamp(1.8rem, 3vw, 2.8rem); text-transform: uppercase; letter-spacing: -0.01em; color: var(--black); }
+.cat-count { font-family: 'Barlow Condensed', sans-serif; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+.cat-view { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: #aaa; text-decoration: none; transition: color 0.2s; }
+.cat-view:hover { color: var(--gold); }
+
+/* LISTING GRID */
+.listing-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; background: var(--gray-line); }
+.listing-card { background: var(--white); padding: 1.8rem; cursor: pointer; text-decoration: none; display: block; border-top: 2px solid transparent; transition: border-color 0.2s, background 0.2s; }
+.listing-card:hover { border-top-color: var(--gold); background: var(--off-white); }
+.listing-area { font-family: 'Barlow Condensed', sans-serif; font-size: 0.58rem; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+.listing-name { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.05rem; text-transform: uppercase; letter-spacing: 0.02em; color: var(--black); margin-bottom: 0.4rem; line-height: 1.2; }
+.listing-desc { font-size: 0.78rem; color: #777; line-height: 1.6; margin-bottom: 0.8rem; }
+.listing-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.listing-tag { font-family: 'Barlow Condensed', sans-serif; font-size: 0.55rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.2rem 0.55rem; border: 1px solid var(--gray-line); color: #999; }
+
+/* FEATURED CARD */
+.listing-card.featured { border-top: 2px solid var(--gold); background: var(--off-white); }
+.listing-card.featured .listing-name { color: var(--black); }
+.featured-badge { font-family: 'Barlow Condensed', sans-serif; font-size: 0.55rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(201,168,76,0.4); padding: 0.15rem 0.5rem; display: inline-block; margin-bottom: 0.5rem; }
+
+/* IMAGE SPLIT */
+.img-split { display: grid; grid-template-columns: 1fr 1fr; min-height: 500px; }
+.img-split-img { background-size: cover; background-position: center; }
+.img-split-content { padding: 5rem 4rem; display: flex; flex-direction: column; justify-content: center; }
+
+/* AREA TILES */
+.area-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2px; background: var(--black); margin-top: 3rem; }
+.area-tile { background: var(--black); padding: 2rem 1.5rem; border-top: 2px solid rgba(255,255,255,0.06); transition: border-color 0.2s; cursor: pointer; }
+.area-tile:hover { border-top-color: var(--gold); }
+.area-tile-name { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.02em; color: var(--white); margin-bottom: 0.4rem; }
+.area-tile-desc { font-size: 0.75rem; color: rgba(255,255,255,0.35); line-height: 1.6; }
+
+/* CTA BANNER */
+.cta-banner { background: var(--black); padding: 6rem 3rem; text-align: center; }
+.cta-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(3rem, 8vw, 8rem); line-height: 0.88; text-transform: uppercase; color: var(--white); margin-bottom: 1.5rem; }
+.cta-sub { font-family: 'EB Garamond', serif; font-style: italic; font-size: 1.1rem; color: rgba(255,255,255,0.45); margin-bottom: 2.5rem; }
+.cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+/* FOOTER */
+footer { background: var(--black); padding: 5rem 3rem 2.5rem; border-top: 1px solid rgba(255,255,255,0.08); }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem; margin-bottom: 4rem; }
+.footer-logo { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.3rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white); text-decoration: none; display: block; margin-bottom: 1.2rem; }
+.footer-tagline { font-family: 'EB Garamond', serif; font-style: italic; font-size: 0.88rem; color: rgba(255,255,255,0.3); line-height: 1.7; max-width: 280px; }
+.footer-col-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 0.62rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; }
+.footer-links { list-style: none; }
+.footer-links li { margin-bottom: 0.55rem; }
+.footer-links a { font-family: 'Barlow Condensed', sans-serif; font-size: 0.82rem; letter-spacing: 0.05em; text-transform: uppercase; color: rgba(255,255,255,0.35); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--white); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 2rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+.footer-bottom span, .footer-bottom a { font-family: 'Barlow Condensed', sans-serif; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.25); text-decoration: none; }
+.footer-bottom a:hover { color: var(--gold); }
+
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* RESPONSIVE */
+@media (max-width: 960px) {
+  .nav { padding: 1.2rem 1.5rem; }
+  .nav-links a:not(.btn-nav) { display: none; }
+  .hero { padding: 0 1.5rem 4rem; }
+  .section { padding: 4rem 1.5rem; }
+  .cat-section { padding: 3.5rem 1.5rem; }
+  .listing-grid { grid-template-columns: 1fr 1fr; }
+  .img-split { grid-template-columns: 1fr; }
+  .img-split-img { min-height: 260px; }
+  .img-split-content { padding: 3rem 2rem; }
+  .area-grid { grid-template-columns: 1fr 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+  .search-bar { padding: 1.5rem; top: 0; }
+}
+@media (max-width: 600px) {
+  .listing-grid { grid-template-columns: 1fr; }
+  .area-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#" class="nav-logo">ST <span style="color:var(--gold)">Directory</span></a>
+  <div class="nav-links">
+    <a href="#surf">Surf</a>
+    <a href="#eat">Eat</a>
+    <a href="#wellness">Wellness</a>
+    <a href="#tours">Tours</a>
+    <a href="#" class="btn btn-nav">List Your Business</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="background-image:url('wil-stewart-K_TbABnVzHo-unsplash.jpg')">
+  <div class="hero-content">
+    <p class="hero-eyebrow">Nicoya Peninsula · Costa Rica</p>
+    <h1 class="hero-title">Santa<br>Teresa.</h1>
+    <p class="hero-subtitle">Everything to do, eat, learn, and explore — from Santa Teresa to Mal Pais, Cabuya, Hermosa, and Manzanillo.</p>
+    <div class="hero-buttons">
+      <a href="#directory" class="btn btn-white">Explore the Directory</a>
+      <a href="#" class="btn btn-ghost">List Your Business</a>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span>Surf Lessons</span><span>·</span><span>Restaurants</span><span>·</span><span>Yoga & Wellness</span><span>·</span><span>Fishing</span><span>·</span><span>Volunteer</span><span>·</span><span>Cooking Classes</span><span>·</span><span>Spanish Classes</span><span>·</span><span>Farming</span><span>·</span><span>Horse Riding</span><span>·</span><span>Diving</span><span>·</span><span>Community</span><span>·</span><span>Tortuga Island</span><span>·</span><span>Cabo Blanco</span><span>·</span><span>ATV & Quad</span><span>·</span><span>Bioluminescence</span><span>·</span>
+    <span>Surf Lessons</span><span>·</span><span>Restaurants</span><span>·</span><span>Yoga & Wellness</span><span>·</span><span>Fishing</span><span>·</span><span>Volunteer</span><span>·</span><span>Cooking Classes</span><span>·</span><span>Spanish Classes</span><span>·</span><span>Farming</span><span>·</span><span>Horse Riding</span><span>·</span><span>Diving</span><span>·</span><span>Community</span><span>·</span><span>Tortuga Island</span><span>·</span><span>Cabo Blanco</span><span>·</span><span>ATV & Quad</span><span>·</span><span>Bioluminescence</span><span>·</span>
+  </div>
+</div>
+
+<!-- SEARCH -->
+<div class="search-bar" id="directory">
+  <div class="search-inner">
+    <input class="search-input" type="text" placeholder="Search restaurants, surf schools, tours...">
+    <div class="filter-tags">
+      <button class="filter-tag active">All</button>
+      <button class="filter-tag">Surf</button>
+      <button class="filter-tag">Eat & Drink</button>
+      <button class="filter-tag">Wellness</button>
+      <button class="filter-tag">Tours</button>
+      <button class="filter-tag">Learn</button>
+      <button class="filter-tag">Nature</button>
+      <button class="filter-tag">Community</button>
+      <button class="filter-tag">Stay</button>
+    </div>
+  </div>
+</div>
+
+<!-- ─────────────────────────────────────────────── -->
+<!-- SURF & WATER SPORTS -->
+<!-- ─────────────────────────────────────────────── -->
+<div class="cat-section reveal" id="surf">
+  <div class="inner">
+    <div class="cat-header">
+      <div class="cat-title-group">
+        <span class="cat-icon">🌊</span>
+        <div>
+          <div class="cat-count">Water Sports & Surf</div>
+          <h2 class="cat-name">Surf & Ocean</h2>
+        </div>
+      </div>
+      <a href="#" class="cat-view">View all →</a>
+    </div>
+    <div class="listing-grid">
+      <a href="#" class="listing-card featured">
+        <div class="featured-badge">Featured</div>
+        <div class="listing-area">Santa Teresa</div>
+        <div class="listing-name">Surf Lessons — All Levels</div>
+        <div class="listing-desc">Group and private surf lessons on Playa Santa Teresa and Playa Carmen. Beginner to advanced. Boards and rash guards included.</div>
+        <div class="listing-tags"><span class="listing-tag">Beginner</span><span class="listing-tag">Private</span><span class="listing-tag">Group</span></div>
+      </a>
+      <a href="#" class="listing-card">
+        <div class="listing-area">Mal Pais · Santa Teresa</div>
+        <div class="listing-name">SUP — Stand Up Paddle</div>
+        <div class="listing-desc">Flat water SUP tours through river estuaries and coastal mangroves. Rentals also available by the hour.</div>
+        <div class="listing-tags"><span class="listing-tag">Tours</span><span class="listing-tag">Rental</span></div>
+      </a>
+      <a href="#" class="listing-card">
+        <div class="listing-area">Santa Teresa · Mal Pais</div>
+        <div class="listing-name">Scuba Diving</div>
+        <div class="listing-desc">Discover Costa Rica's most underrated dive sites. Shark diving, reef dives, and PADI certification courses available.</div>
+        <div class="listing-tags"><span class="listing-tag">PADI</span><span class="listing-tag">Sharks</span><span class="listing-tag">Reef</span></div>
+      </a>
+      <a href="#" class="listing-card">
+        <div class="listing-area">Santa Teresa</div>
+        <div class="listing-name">Snorkelling</div>
+        <div class="listing-desc">Guided snorkel tours along the rocky points and tidepools. Day trips to Tortuga Island include full snorkel equipment.</div>
+        <div class="listing-tags"><span class="listing-tag">Guided</span><span class="listing-tag">Family</span></div>
+      </a>
+      <a href="#" class="listing-card">
+        <div class="listing-area">Santa Teresa</div>
+        <div class="listing-name">Surf Board Rentals</div>
+        <div class="listing-desc">Shortboards, longboards, and foamies. Daily and weekly rates. Delivery to your hotel available.</div>
+        <div class="listing-tags"><span class="listing-tag">Rental</span><span class="listing-tag">Daily</span></div>
+      </a>
+      <a href="#" class="listing-card">
+        <div class="listing-area">Santa Teresa · Playa Carmen</div>
+        <div class="listing-name">Surf Camps</div>
+        <div class="listing-desc">Week-long surf camps combining daily lessons, yoga, and accommodation. Solo travellers, couples, and groups welcome.</div>
+        <div class="listing-tags"><span class="listing-tag">Camp</span><span class="listing-tag">Yoga</span><span class="listing-tag">Week</span></div>
+      </a>
+      <a href="#" class="listing-card">
+        <div class="listing-area">Paquera · Manzanillo</div>
+        <div class="listing-name">Bioluminescence Kayak</div>
+        <div class="listing-desc">Night kayak tour through glowing plankton-lit waters. One of Costa Rica's most magical experiences. Best at new moon.</div>
+        <div class="listing-tags"><span class="listing-tag">Night</span><span class="listing-tag">Kayak</span></div>
+      </a>
+      <a href="#" class="listing-card">
+        <div class="listing-area">Santa Teresa</div>
+        <div class="listing-name">Kitesurfing & Windsurfing</div>
+        <div class="listing-desc">Lessons and equipment for kitesurfers. Offshore wind conditions are ideal December to April.</div>
+        <div class="listing-tags"><span class="listing-tag">Lessons</span><span class="listing-tag">Rental</span></div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- EAT & DRINK -->
+<div class="cat-section section-offwhite reveal" id="eat">
+  <div class="inner">
+    <div class="cat-header">
+      <div class="cat-title-group">
+        <span class="cat-icon">🍽️</span>
+        <div>
+          <div class="cat-count">Food & Drink</div>
+          <h2 class="cat-name">Eat & Drink</h2>
+        </div>
+      </div>
+      <a href="#" class="cat-view">View all →</a>
+    </div>
+    <div class="listing-grid">
+      <a href="#" class="listing-card featured" style="background:var(--white)">
+        <div class="featured-badge">Featured</div>
+        <div class="listing-area">Santa Teresa</div>
+        <div class="listing-name">Beachfront Restaurants</div>
+        <div class="listing-desc">Fresh catch, ceviche, and sunset cocktails with your feet in the sand. Seafood-focused menus changing daily.</div>
+        <div class="listing-tags"><span class="listing-tag">Seafood</span><span class="listing-tag">Sunset</span></div>
+      </a>
+      <a href="#" class="listing-card" style="background:var(--white)">
+        <div class="listing-area">Santa Teresa</div>
+        <div class="listing-name">Eat Street</div>
+        <div class="listing-desc">The most popular food strip in town. International and local options, smoothie bowls, freshly baked bread, and the best coffee in the area.</div>
+        <div class="listing-tags"><span class="listing-tag">Casual</span><span class="listing-tag">Local</span></div>
+      </a>
+      <a href="#" class="listing-card" style="background:var(--white)">
+        <div class="listing-area">Santa Teresa</div>
+        <div class="listing-name">Sushi & Japanese</div>
+        <div class="listing-desc">Some of the freshest sushi you'll ever eat — local favourite Koji draws guests from across the peninsula.</div>
+        <div class="listing-tags"><span class="listing-tag">Sushi</span><span class="listing-tag">Fresh</span></div>
+      </a>
+      <a href="#" class="listing-card" style="background:var(--white)">
+        <div class="listing-area">Mal Pais · Santa Teresa</div>
+        <div class="listing-name">Sodas & Local Spots</div>
+        <div class="listing-desc">Traditional Costa Rican casado and gallo pinto at local sodas. Best value meals on the peninsula. Try the chifrijo.</div>
+        <div class="listing-tags"><span class="listing-tag">Local</span><span class="listing-tag">Budget</span></div>
+      </a>
+      <a href="#" class="listing-card" style="background:var(--white)">
+        <div class="listing-area">Santa Teresa</div>
+        <div class="listing-name">Smoothie Bowls & Health</div>
+        <div class="listing-desc">Blue Zone wellness cuisine — açaí bowls, cold press juices, raw treats, and protein-packed breakfasts for surfers.</div>
+        <div class="listing-tags"><span class="listing-tag">Healthy</span><span class="listing-tag">Vegan</span></div>
+      </a>
+      <a href="#" class="listing-card" style="background:var(--white)">
+        <div class="listing-area">Santa Teresa · Mal Pais</div>
+        <div class="listing-name">Bars & Nightlife</div>
+        <div class="listing-desc">Beach bonfires, live music nights, and cocktail bars. Santa Teresa's nightlife is low-key but lively — from sunset to late.</div>
+        <div class="listing-tags"><span class="listing-tag">Cocktails</span><span class="listing-tag">Live Music</span></div>
+      </a>
+      <a href="#" class="listing-card" style="background:var(--white)">
+        <div class="listing-area">Santa Teresa</div>
+        <div class="listing-name">Coffee & Bakeries</div>
+        <div class="listing-desc">Specialty Costa Rican coffee, fresh croissants, and artisan baked goods. Morning ritual for the surf crowd.</div>
+        <div class="listing-tags"><span class="listing-tag">Coffee</span><span class="listing-tag">Breakfast</span></div>
+      </a>
+      <a href="#" class="listing-card" style="background:var(--white)">
+        <div class="listing-area">Santa Teresa</div>
+        <div class="listing-name">Farmers Markets</div>
+        <div class="listing-desc">Weekly local market with organic produce, handmade foods, medicinal herbs, and community vendors. Every Saturday.</div>
+        <div class="listing-tags"><span class="listing-tag">Organic</span><span class="listing-tag">Saturday</span></div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- WELLNESS -->
+<div class="cat-section reveal" id="wellness">
+  <div class="inner">
+    <div class="cat-header">
+      <div class="cat-title-group">
+        <span class="cat-icon">🧘</span>
+        <div>
+          <div class="cat-count">Yoga, Spa & Wellness</div>
+          <h2 class="cat-name">Wellness</h2>
+        </div>
+      </div>
+      <a href="#" class="cat-view">View all →</a>
+    </div>
+    <div class="listing-grid">
+      <a href="#" class="listing-card featured">
+        <div class="featured-badge">Featured</div>
+        <div class="listing-area">Santa Teresa</div>
+        <div class="listing-name">Yoga Studios & Classes</div>
+        <div class="listing-desc">Daily group yoga for all levels — sunrise beach yoga, ashtanga, vinyasa, and restorative. Private classes available.</div>
+        <div class="listing-tags"><span class="listing-tag">Daily</span><span class="listing-tag">All Levels</span><span class="listing-tag">Beach</span></div>
+      </a>
+      <a href="#" class="listing-card">
+        <div class="listing-area">Santa Teresa · Mal Pais</div>
+        <div class="listing-name">Pilates</div>
+        <div class="listing-desc">Mat and reformer Pilates at top studios. Popular among the expat community. Perfect complement to a surf routine.</div>
+        <div class="listing-tags"><span class="listing-tag">Reformer</span><span class="listing-tag">Mat</span></div>
+      </a>
+      <a href="#" class="listing-card">
+        <div class="listing-area">Santa Teresa</div>
+        <div class="listing-name">Massage & Spa</div>
+        <div class="listing-desc">Deep tissue, Thai, hot stone, and Ayurvedic treatments. Beachside massage with the sound of the waves. Om Spa is a local favourite.</div>
+        <div class="listing-tags"><span class="listing-tag">Deep Tissue</span><span class="listing-tag">Thai</span><span class="listing-tag">Beach</span></div>
+      </a>
+      <a href="#" class="listing-card">
+        <div class="listing-area">Santa Teresa</div>
+        <div class="listing-name">Retreat Centres</div>
+        <div class="listing-desc">Multi-day yoga and wellness retreats. Surf and yoga combos. Detox weeks. Digital detox immersions in the jungle.</div>
+        <div class="listing-tags"><span class="listing-tag">Retreat</span><span class="listing-tag">Multi-day</span></div>
+      </a>
+      <a href="#" class="listing-card">
+        <div class="listing-area">Santa Teresa</div>
+        <div class="listing-name">Meditation & Sound Healing</div>
+        <div class="listing-desc">Sound bath ceremonies, guided meditation, and breathwork sessions. Growing wellness scene with world-class practitioners.</div>
+        <div class="listing-tags"><span class="listing-tag">Sound Bath</span><span class="listing-tag">Breathwork</span></div>
+      </a>
+      <a href="#" class="listing-card">
+        <div class="listing-area">Santa Teresa</div>
+        <div class="listing-name">Personal Training & Fitness</div>
+        <div class="listing-desc">Outdoor gyms, CrossFit, beach boot camp, and personal training sessions. Active community with daily classes.</div>
+        <div class="listing-tags"><span class="listing-tag">CrossFit</span><span class="listing-tag">Outdoor</span></div>
+      </a>
+      <a href="#" class="listing-card">
+        <div class="listing-area">Mal Pais · Santa Teresa</div>
+        <div class="listing-name">Acupuncture & Alternative</div>
+        <div class="listing-desc">Acupuncture, reiki, herbal medicine, and holistic healing practitioners embedded in the community.</div>
+        <div class="listing-tags"><span class="listing-tag">Holistic</span><span class="listing-tag">Reiki</span></div>
+      </a>
+      <a href="#" class="listing-card">
+        <div class="listing-area">Santa Teresa</div>
+        <div class="listing-name">Nutrition & Health Coaching</div>
+        <div class="listing-desc">Blue Zone-inspired nutrition coaching, meal planning, and detox programmes tailored to the tropical lifestyle.</div>
+        <div class="listing-tags"><span class="listing-tag">Blue Zone</span><span class="listing-tag">Coaching</span></div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- IMAGE BREAK -->
+<div class="img-split reveal">
+  <div class="img-split-img" style="background-image:url('tienko-dima-uYoVf9I6ANI-unsplash.jpg')"></div>
+  <div class="img-split-content section-black">
+    <span class="label">The Nicoya Peninsula</span>
+    <h2 class="heading-lg" style="color:var(--white)">One of the world's<br>five Blue Zones.</h2>
+    <div class="body-text light">
+      <p>The Nicoya Peninsula is one of only five places on earth where people consistently live past 100. The lifestyle here — fresh food, daily movement, strong community, and a deep connection to nature — is the reason. Santa Teresa is at the heart of it.</p>
+      <p>This directory covers Santa Teresa, Mal Pais, Playa Hermosa, Cabuya, Manzanillo, and Montezuma — the full southern tip of the peninsula.</p>
+    </div>
+  </div>
+</div>
+
+<!-- TOURS & ADVENTURES -->
+<div class="cat-section section-offwhite reveal" id="tours">
+  <div class="inner">
+    <div class="cat-header">
+      <div class="cat-title-group">
+        <span class="cat-icon">🗺️</span>
+        <div>
+          <div class="cat-count">Day Trips & Adventures</div>
+          <h2 class="cat-name">Tours & Adventures</h2>
+        </div>
+      </div>
+      <a href="#" class="cat-view">View all →</a>
+    </div>
+    <div class="listing-grid">
+      <a href="#" class="listing-card featured" style="background:var(--white)">
+        <div class="featured-badge">Featured</div>
+        <div class="listing-area">Paquera · Nicoya</div>
+        <div class="listing-name">Tortuga Island Day Trip</div>
+        <div class="listing-desc">Full-day excursion to one of Costa Rica's most beautiful islands. Snorkelling, white sand beach, fresh lunch included. Departs from Montezuma.</div>
+        <div class="listing-tags"><span class="listing-tag">Full Day</span><span class="listing-tag">Snorkel</span><span class="listing-tag">Lunch</span></div>
+      </a>
+      <a href="#" class="listing-card" style="background:var(--white)">
+        <div class="listing-area">Cabuya · Mal Pais</div>
+        <div class="listing-name">Cabo Blanco Reserve Hike</div>
+        <div class="listing-desc">Costa Rica's oldest nature reserve. Two trails through primary forest to a remote beach. Monkeys, birds, and total silence.</div>
+        <div class="listing-tags"><span class="listing-tag">Hiking</span><span class="listing-tag">Wildlife</span></div>
+      </a>
+      <a href="#" class="listing-card" style="background:var(--white)">
+        <div class="listing-area">Santa Teresa · Hermosa</div>
+        <div class="listing-name">Horseback Riding</div>
+        <div class="listing-desc">Sunset rides along Playa Hermosa and Playa Carmen. Through rivers, fields, and empty beaches. All ages, beginners welcome.</div>
+        <div class="listing-tags"><span class="listing-tag">Sunset</span><span class="listing-tag">Beach</span><span class="listing-tag">Family</span></div>
+      </a>
+      <a href="#" class="listing-card" style="background:var(--white)">
+        <div class="listing-area">Mal Pais · Santa Teresa</div>
+        <div class="listing-name">ATV & Quad Tours</div>
+        <div class="listing-desc">Guided ATV tours through jungle trails and back roads. Explore Montezuma, Cabuya, and the coastline under your own power.</div>
+        <div class="listing-tags"><span class="listing-tag">ATV</span><span class="listing-tag">Jungle</span></div>
+      </a>
+      <a href="#" class="listing-card" style="background:var(--white)">
+        <div class="listing-area">Mal Pais</div>
+        <div class="listing-name">Ziplining — Canopy Tour</div>
+        <div class="listing-desc">Eight ziplines including one over 500 metres. Views of the Pacific Ocean from the treetops. All ages, no experience needed.</div>
+        <div class="listing-tags"><span class="listing-tag">Zipline</span><span class="listing-tag">Family</span></div>
+      </a>
+      <a href="#" class="listing-card" style="background:var(--white)">
+        <div class="listing-area">Montezuma</div>
+        <div class="listing-name">Montezuma Waterfall</div>
+        <div class="listing-desc">45-minute drive to a three-tiered waterfall with natural swimming pools. One of the most beautiful spots on the peninsula.</div>
+        <div class="listing-tags"><span class="listing-tag">Waterfall</span><span class="listing-tag">Swimming</span></div>
+      </a>
+      <a href="#" class="listing-card" style="background:var(--white)">
+        <div class="listing-area">Cabuya</div>
+        <div class="listing-name">Cabuya Island Cemetery</div>
+        <div class="listing-desc">One of Costa Rica's most mysterious sites — an island cemetery accessible only at low tide. Walk from the beach, watch the tides.</div>
+        <div class="listing-tags"><span class="listing-tag">Cultural</span><span class="listing-tag">Tides</span></div>
+      </a>
+      <a href="#" class="listing-card" style="background:var(--white)">
+        <div class="listing-area">Mal Pais</div>
+        <div class="listing-name">Tide Pool Exploration</div>
+        <div class="listing-desc">Natural rock tide pools 10 minutes south of Santa Teresa. Free entry, best at low tide. A local secret worth chasing.</div>
+        <div class="listing-tags"><span class="listing-tag">Free</span><span class="listing-tag">Family</span><span class="listing-tag">Low Tide</span></div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- FISHING -->
+<div class="cat-section reveal">
+  <div class="inner">
+    <div class="cat-header">
+      <div class="cat-title-group">
+        <span class="cat-icon">🎣</span>
+        <div>
+          <div class="cat-count">Sport & Inshore</div>
+          <h2 class="cat-name">Fishing</h2>
+        </div>
+      </div>
+      <a href="#" class="cat-view">View all →</a>
+    </div>
+    <div class="listing-grid">
+      <a href="#" class="listing-card featured">
+        <div class="featured-badge">Featured</div>
+        <div class="listing-area">Mal Pais · Santa Teresa</div>
+        <div class="listing-name">Inshore Fishing Charters</div>
+        <div class="listing-desc">3-hour inshore trips from Mal Pais. Tuna, dorado, and red snapper most mornings. From $50pp with a full boat. Equipment and refreshments included.</div>
+        <div class="listing-tags"><span class="listing-tag">Inshore</span><span class="listing-tag">Half Day</span><span class="listing-tag">Tuna</span></div>
+      </a>
+      <a href="#" class="listing-card">
+        <div class="listing-area">Mal Pais</div>
+        <div class="listing-name">Deep Sea / Offshore Fishing</div>
+        <div class="listing-desc">Full-day offshore charters targeting marlin, sailfish, and wahoo in the deep blue off the Nicoya Peninsula.</div>
+        <div class="listing-tags"><span class="listing-tag">Offshore</span><span class="listing-tag">Full Day</span><span class="listing-tag">Marlin</span></div>
+      </a>
+      <a href="#" class="listing-card">
+        <div class="listing-area">Cabuya · Montezuma</div>
+        <div class="listing-name">Fly Fishing</div>
+        <div class="listing-desc">Estuary fly fishing for snook and tarpon in the river mouths around Cabuya and Manzanillo. Guided half-day trips.</div>
+        <div class="listing-tags"><span class="listing-tag">Fly Fishing</span><span class="listing-tag">Estuary</span></div>
+      </a>
+      <a href="#" class="listing-card">
+        <div class="listing-area">Santa Teresa</div>
+        <div class="listing-name">Boat Rentals</div>
+        <div class="listing-desc">Self-drive boat rentals for fishing, snorkelling, or sunset cruises. Captain hire available for longer trips.</div>
+        <div class="listing-tags"><span class="listing-tag">Rental</span><span class="listing-tag">Captain Available</span></div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- LEARN -->
+<div class="cat-section section-offwhite reveal" id="learn">
+  <div class="inner">
+    <div class="cat-header">
+      <div class="cat-title-group">
+        <span class="cat-icon">📚</span>
+        <div>
+          <div class="cat-count">Classes & Education</div>
+          <h2 class="cat-name">Learn</h2>
+        </div>
+      </div>
+      <a href="#" class="cat-view">View all →</a>
+    </div>
+    <div class="listing-grid">
+      <a href="#" class="listing-card featured" style="background:var(--white)">
+        <div class="featured-badge">Featured</div>
+        <div class="listing-area">Santa Teresa</div>
+        <div class="listing-name">Spanish Language Classes</div>
+        <div class="listing-desc">One-on-one and group Spanish classes for all levels. Conversational focus, immersive method. Great for long-term visitors and expats.</div>
+        <div class="listing-tags"><span class="listing-tag">All Levels</span><span class="listing-tag">Private</span><span class="listing-tag">Group</span></div>
+      </a>
+      <a href="#" class="listing-card" style="background:var(--white)">
+        <div class="listing-area">Santa Teresa</div>
+        <div class="listing-name">Cooking Classes</div>
+        <div class="listing-desc">Learn to cook traditional Costa Rican dishes — ceviche, gallo pinto, plantain, and local seafood. Market visit included.</div>
+        <div class="listing-tags"><span class="listing-tag">Traditional</span><span class="listing-tag">Seafood</span><span class="listing-tag">Market</span></div>
+      </a>
+      <a href="#" class="listing-card" style="background:var(--white)">
+        <div class="listing-area">Santa Teresa · Mal Pais</div>
+        <div class="listing-name">Photography Workshops</div>
+        <div class="listing-desc">Landscape, surf, and wildlife photography workshops led by professional photographers. Sunrise shoots on the beach.</div>
+        <div class="listing-tags"><span class="listing-tag">Surf Photography</span><span class="listing-tag">Landscape</span></div>
+      </a>
+      <a href="#" class="listing-card" style="background:var(--white)">
+        <div class="listing-area">Santa Teresa</div>
+        <div class="listing-name">Art & Ceramics</div>
+        <div class="listing-desc">Pottery, painting, and ceramics studios open to visitors. Community art classes and workshops throughout the year.</div>
+        <div class="listing-tags"><span class="listing-tag">Pottery</span><span class="listing-tag">Painting</span></div>
+      </a>
+      <a href="#" class="listing-card" style="background:var(--white)">
+        <div class="listing-area">Santa Teresa</div>
+        <div class="listing-name">Music Lessons</div>
+        <div class="listing-desc">Guitar, percussion, and Latin rhythm classes. Private lessons with local musicians. Great for extended stays.</div>
+        <div class="listing-tags"><span class="listing-tag">Guitar</span><span class="listing-tag">Percussion</span></div>
+      </a>
+      <a href="#" class="listing-card" style="background:var(--white)">
+        <div class="listing-area">Santa Teresa · Montezuma</div>
+        <div class="listing-name">Dance Classes</div>
+        <div class="listing-desc">Salsa, bachata, and traditional Costa Rican folk dance. Group classes and private lessons. Weekly social dances.</div>
+        <div class="listing-tags"><span class="listing-tag">Salsa</span><span class="listing-tag">Bachata</span></div>
+      </a>
+      <a href="#" class="listing-card" style="background:var(--white)">
+        <div class="listing-area">Santa Teresa</div>
+        <div class="listing-name">Freediving Courses</div>
+        <div class="listing-desc">AIDA freediving courses from beginner to instructor level. Clear warm water, abundant marine life. Year-round conditions.</div>
+        <div class="listing-tags"><span class="listing-tag">AIDA</span><span class="listing-tag">Certification</span></div>
+      </a>
+      <a href="#" class="listing-card" style="background:var(--white)">
+        <div class="listing-area">Santa Teresa</div>
+        <div class="listing-name">PADI Dive Certification</div>
+        <div class="listing-desc">Open Water, Advanced, and Rescue Diver certifications. Pool sessions and open water dives in warm Pacific waters.</div>
+        <div class="listing-tags"><span class="listing-tag">PADI</span><span class="listing-tag">Open Water</span></div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- NATURE & WILDLIFE -->
+<div class="cat-section reveal">
+  <div class="inner">
+    <div class="cat-header">
+      <div class="cat-title-group">
+        <span class="cat-icon">🌿</span>
+        <div>
+          <div class="cat-count">Reserves & Wildlife</div>
+          <h2 class="cat-name">Nature & Wildlife</h2>
+        </div>
+      </div>
+      <a href="#" class="cat-view">View all →</a>
+    </div>
+    <div class="listing-grid">
+      <a href="#" class="listing-card featured">
+        <div class="featured-badge">Featured</div>
+        <div class="listing-area">Cabuya</div>
+        <div class="listing-name">Cabo Blanco Nature Reserve</div>
+        <div class="listing-desc">Costa Rica's first protected area. 240+ bird species, monkeys, coatis, and ocelots. Two trails through old-growth forest to a pristine beach.</div>
+        <div class="listing-tags"><span class="listing-tag">Reserve</span><span class="listing-tag">Birds</span><span class="listing-tag">Hiking</span></div>
+      </a>
+      <a href="#" class="listing-card">
+        <div class="listing-area">Nearby · Nicoya</div>
+        <div class="listing-name">Curu Wildlife Refuge</div>
+        <div class="listing-desc">Capuchin and howler monkeys, Guanacaste trees, and coastal forest trails. Popular for families and wildlife lovers.</div>
+        <div class="listing-tags"><span class="listing-tag">Monkeys</span><span class="listing-tag">Family</span></div>
+      </a>
+      <a href="#" class="listing-card">
+        <div class="listing-area">Santa Teresa · Mal Pais</div>
+        <div class="listing-name">Turtle Watching</div>
+        <div class="listing-desc">Olive Ridley and Leatherback sea turtle nesting. Guided night tours during nesting season. Community-led conservation.</div>
+        <div class="listing-tags"><span class="listing-tag">Night Tour</span><span class="listing-tag">Conservation</span></div>
+      </a>
+      <a href="#" class="listing-card">
+        <div class="listing-area">Santa Teresa</div>
+        <div class="listing-name">Dolphin & Whale Watching</div>
+        <div class="listing-desc">Humpback whale migration tours July–October. Spinner and bottlenose dolphin sightings year-round. Boat tours from Mal Pais.</div>
+        <div class="listing-tags"><span class="listing-tag">Whale</span><span class="listing-tag">Dolphin</span><span class="listing-tag">Seasonal</span></div>
+      </a>
+      <a href="#" class="listing-card">
+        <div class="listing-area">Santa Teresa · Surrounding</div>
+        <div class="listing-name">Birdwatching Tours</div>
+        <div class="listing-desc">Guided birding in Cabo Blanco and surrounding forests. 300+ species including toucans, parrots, and rare coastal seabirds.</div>
+        <div class="listing-tags"><span class="listing-tag">Guided</span><span class="listing-tag">Dawn</span></div>
+      </a>
+      <a href="#" class="listing-card">
+        <div class="listing-area">Santa Teresa</div>
+        <div class="listing-name">Jungle Hikes</div>
+        <div class="listing-desc">Self-guided and guided jungle hikes from Santa Teresa. Waterfalls, wildlife sightings, and river crossings through the hills.</div>
+        <div class="listing-tags"><span class="listing-tag">Hiking</span><span class="listing-tag">Waterfall</span></div>
+      </a>
+      <a href="#" class="listing-card">
+        <div class="listing-area">Mal Pais</div>
+        <div class="listing-name">Tide Pool Walks</div>
+        <div class="listing-desc">Guided low-tide walks through the rock pools of Mal Pais. Starfish, octopus, moray eels, and reef fish in shallow pools.</div>
+        <div class="listing-tags"><span class="listing-tag">Free</span><span class="listing-tag">Guided Available</span></div>
+      </a>
+      <a href="#" class="listing-card">
+        <div class="listing-area">Nearby · Barra Honda</div>
+        <div class="listing-name">Cave Exploration</div>
+        <div class="listing-desc">Barra Honda Caves National Park — 40 minutes from Sámara. Guided tours into Terciopelo Cave with stalactites and cave formations.</div>
+        <div class="listing-tags"><span class="listing-tag">Caves</span><span class="listing-tag">Day Trip</span></div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- IMAGE BREAK 2 -->
+<div class="img-split reveal">
+  <div class="img-split-content section-offwhite">
+    <span class="label">Volunteer & Give Back</span>
+    <h2 class="heading-lg">Live here.<br>Contribute here.</h2>
+    <div class="body-text dark">
+      <p>Santa Teresa has a growing community of residents, expats, and long-term visitors who give back to the area they love. From turtle conservation to reforestation, school programmes to community kitchens — there's a place for everyone who wants to contribute.</p>
+      <p>The directory lists every volunteer organisation, NGO, and community project active on the southern Nicoya Peninsula.</p>
+    </div>
+    <a href="#volunteer" class="btn btn-black" style="margin-top:2rem">See Volunteer Options</a>
+  </div>
+  <div class="img-split-img" style="background-image:url('cristian-palmer-XexawgzYOBc-unsplash.jpg')"></div>
+</div>
+
+<!-- VOLUNTEER & COMMUNITY -->
+<div class="cat-section reveal" id="volunteer">
+  <div class="inner">
+    <div class="cat-header">
+      <div class="cat-title-group">
+        <span class="cat-icon">🤝</span>
+        <div>
+          <div class="cat-count">Give Back & Connect</div>
+          <h2 class="cat-name">Volunteer & Community</h2>
+        </div>
+      </div>
+      <a href="#" class="cat-view">View all →</a>
+    </div>
+    <div class="listing-grid">
+      <a href="#" class="listing-card featured">
+        <div class="featured-badge">Featured</div>
+        <div class="listing-area">Santa Teresa · Mal Pais</div>
+        <div class="listing-name">Sea Turtle Conservation</div>
+        <div class="listing-desc">Volunteer on nesting beach patrols, egg protection, and hatchling releases. Community-led programme. Evening and night shifts during season.</div>
+        <div class="listing-tags"><span class="listing-tag">Night Patrol</span><span class="listing-tag">Seasonal</span></div>
+      </a>
+      <a href="#" class="listing-card">
+        <div class="listing-area">Santa Teresa</div>
+        <div class="listing-name">Reforestation Projects</div>
+        <div class="listing-desc">Tree planting and habitat restoration on degraded land around the peninsula. Weekend volunteer days open to all.</div>
+        <div class="listing-tags"><span class="listing-tag">Weekend</span><span class="listing-tag">Open To All</span></div>
+      </a>
+      <a href="#" class="listing-card">
+        <div class="listing-area">Santa Teresa</div>
+        <div class="listing-name">School Programmes</div>
+        <div class="listing-desc">English teaching, art workshops, and after-school support at local schools. Long-term and short-term placements available.</div>
+        <div class="listing-tags"><span class="listing-tag">Teaching</span><span class="listing-tag">Children</span></div>
+      </a>
+      <a href="#" class="listing-card">
+        <div class="listing-area">Santa Teresa · Mal Pais</div>
+        <div class="listing-name">Beach Clean-Ups</div>
+        <div class="listing-desc">Monthly community-organised beach cleans. Bring gloves, bring friends. Followed by community meal and social.</div>
+        <div class="listing-tags"><span class="listing-tag">Monthly</span><span class="listing-tag">Community</span></div>
+      </a>
+      <a href="#" class="listing-card">
+        <div class="listing-area">Santa Teresa</div>
+        <div class="listing-name">Animal Rescue & Wildlife Care</div>
+        <div class="listing-desc">Support local wildlife rescue centres caring for injured monkeys, sloths, and birds. Short-term volunteer placements welcome.</div>
+        <div class="listing-tags"><span class="listing-tag">Wildlife</span><span class="listing-tag">Animals</span></div>
+      </a>
+      <a href="#" class="listing-card">
+        <div class="listing-area">Santa Teresa · Manzanillo</div>
+        <div class="listing-name">Organic Farming & Permaculture</div>
+        <div class="listing-desc">Work on local organic farms and permaculture projects. WWOOF placements and paid seasonal work. Learn sustainable agriculture.</div>
+        <div class="listing-tags"><span class="listing-tag">WWOOF</span><span class="listing-tag">Permaculture</span></div>
+      </a>
+      <a href="#" class="listing-card">
+        <div class="listing-area">Santa Teresa</div>
+        <div class="listing-name">Community Kitchen</div>
+        <div class="listing-desc">Help prepare and distribute meals for local families in need. Weekly volunteer shifts. No experience necessary.</div>
+        <div class="listing-tags"><span class="listing-tag">Weekly</span><span class="listing-tag">Food</span></div>
+      </a>
+      <a href="#" class="listing-card">
+        <div class="listing-area">Nicoya Peninsula</div>
+        <div class="listing-name">Marine Conservation Research</div>
+        <div class="listing-desc">Assist researchers monitoring marine ecosystems, coral health, and fish population surveys. Dive certification required.</div>
+        <div class="listing-tags"><span class="listing-tag">Research</span><span class="listing-tag">Diving Required</span></div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- FARMING & LAND -->
+<div class="cat-section section-offwhite reveal">
+  <div class="inner">
+    <div class="cat-header">
+      <div class="cat-title-group">
+        <span class="cat-icon">🌱</span>
+        <div>
+          <div class="cat-count">Agriculture & Land</div>
+          <h2 class="cat-name">Farming & Growing</h2>
+        </div>
+      </div>
+      <a href="#" class="cat-view">View all →</a>
+    </div>
+    <div class="listing-grid">
+      <a href="#" class="listing-card featured" style="background:var(--white)">
+        <div class="featured-badge">Featured</div>
+        <div class="listing-area">Santa Teresa · Manzanillo</div>
+        <div class="listing-name">Organic Farm Visits & Tours</div>
+        <div class="listing-desc">Tour working organic farms producing cacao, coffee, tropical fruit, and vegetables. Learn about sustainable growing in the tropics.</div>
+        <div class="listing-tags"><span class="listing-tag">Cacao</span><span class="listing-tag">Coffee</span><span class="listing-tag">Tour</span></div>
+      </a>
+      <a href="#" class="listing-card" style="background:var(--white)">
+        <div class="listing-area">Nicoya Peninsula</div>
+        <div class="listing-name">Cacao & Chocolate Making</div>
+        <div class="listing-desc">From tree to bar — visit a working cacao farm, ferment and roast beans, and make your own chocolate to take home.</div>
+        <div class="listing-tags"><span class="listing-tag">Workshop</span><span class="listing-tag">Family</span></div>
+      </a>
+      <a href="#" class="listing-card" style="background:var(--white)">
+        <div class="listing-area">Santa Teresa</div>
+        <div class="listing-name">Permaculture Workshops</div>
+        <div class="listing-desc">Weekend and week-long permaculture design courses. Hands-on learning in working food forests and regenerative farms.</div>
+        <div class="listing-tags"><span class="listing-tag">PDC</span><span class="listing-tag">Weekend</span></div>
+      </a>
+      <a href="#" class="listing-card" style="background:var(--white)">
+        <div class="listing-area">Nicoya Peninsula</div>
+        <div class="listing-name">Coffee Farm Tours</div>
+        <div class="listing-desc">Visit inland coffee farms in the highlands above the peninsula. Cupping sessions, harvest participation, and farm-to-cup tastings.</div>
+        <div class="listing-tags"><span class="listing-tag">Coffee</span><span class="listing-tag">Cupping</span></div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- AREAS SECTION -->
+<section class="section section-black reveal">
+  <div class="inner">
+    <span class="label">The Area</span>
+    <h2 class="heading-lg" style="color:var(--white)">Five villages.<br>One peninsula.</h2>
+    <div class="area-grid">
+      <div class="area-tile">
+        <div class="area-tile-name">Santa Teresa</div>
+        <div class="area-tile-desc">The main hub. Surf, restaurants, yoga, nightlife, and the best waves on the peninsula. Playa Carmen runs south.</div>
+      </div>
+      <div class="area-tile">
+        <div class="area-tile-name">Mal Pais</div>
+        <div class="area-tile-desc">Just south of Santa Teresa. Quieter, rockier, rawer. Tide pools, local fishing, and a strong expat community.</div>
+      </div>
+      <div class="area-tile">
+        <div class="area-tile-name">Playa Hermosa</div>
+        <div class="area-tile-desc">North of Santa Teresa. Long empty beach, consistent breaks, and a more local crowd. Sunsets are exceptional.</div>
+      </div>
+      <div class="area-tile">
+        <div class="area-tile-name">Cabuya</div>
+        <div class="area-tile-desc">Gateway to Cabo Blanco Reserve. Small fishing community with a mysterious island cemetery. Off the beaten path.</div>
+      </div>
+      <div class="area-tile">
+        <div class="area-tile-name">Manzanillo</div>
+        <div class="area-tile-desc">Remote village inland. Organic farms, permaculture projects, and a strong community of growers and naturalists.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COWORKING & DIGITAL NOMAD -->
+<div class="cat-section reveal">
+  <div class="inner">
+    <div class="cat-header">
+      <div class="cat-title-group">
+        <span class="cat-icon">💻</span>
+        <div>
+          <div class="cat-count">Work & Stay</div>
+          <h2 class="cat-name">Coworking & Nomad</h2>
+        </div>
+      </div>
+      <a href="#" class="cat-view">View all →</a>
+    </div>
+    <div class="listing-grid">
+      <a href="#" class="listing-card featured">
+        <div class="featured-badge">Featured</div>
+        <div class="listing-area">Santa Teresa</div>
+        <div class="listing-name">Coworking Spaces</div>
+        <div class="listing-desc">Fast fibre internet, standing desks, private call booths, and community events. Day passes, weekly and monthly rates available.</div>
+        <div class="listing-tags"><span class="listing-tag">Fibre</span><span class="listing-tag">Community</span><span class="listing-tag">Day Pass</span></div>
+      </a>
+      <a href="#" class="listing-card">
+        <div class="listing-area">Santa Teresa</div>
+        <div class="listing-name">Coliving Spaces</div>
+        <div class="listing-desc">Live and work with other remote professionals. Private rooms, shared kitchens, weekly community dinners, and surf mornings.</div>
+        <div class="listing-tags"><span class="listing-tag">Monthly</span><span class="listing-tag">Community</span></div>
+      </a>
+      <a href="#" class="listing-card">
+        <div class="listing-area">Santa Teresa</div>
+        <div class="listing-name">AI & Tech Meetups</div>
+        <div class="listing-desc">Growing tech and AI community hosting regular meetups, workshops, and informal knowledge-sharing sessions.</div>
+        <div class="listing-tags"><span class="listing-tag">AI</span><span class="listing-tag">Meetup</span></div>
+      </a>
+      <a href="#" class="listing-card">
+        <div class="listing-area">Santa Teresa</div>
+        <div class="listing-name">Business Support</div>
+        <div class="listing-desc">Local accountants, legal advisors, and business consultants familiar with Costa Rica residency, company structures, and real estate law.</div>
+        <div class="listing-tags"><span class="listing-tag">Legal</span><span class="listing-tag">Accounting</span></div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<section class="cta-banner reveal">
+  <div class="inner-narrow">
+    <p style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:0.75rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;">Santa Teresa Directory</p>
+    <h2 class="cta-title">List Your<br>Business.</h2>
+    <p class="cta-sub">Free to list. No commission. Just more visibility for the businesses that make this place what it is.</p>
+    <div class="cta-buttons">
+      <a href="#" class="btn btn-gold">Submit a Listing</a>
+      <a href="#" class="btn btn-white">Advertise Here</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="inner">
+    <div class="footer-grid">
+      <div>
+        <a href="#" class="footer-logo">ST <span style="color:var(--gold)">Directory</span></a>
+        <p class="footer-tagline">The complete guide to life on the southern Nicoya Peninsula — Santa Teresa, Mal Pais, Cabuya, Hermosa, and beyond.</p>
+      </div>
+      <div>
+        <p class="footer-col-title">Activities</p>
+        <ul class="footer-links">
+          <li><a href="#surf">Surf & Ocean</a></li>
+          <li><a href="#wellness">Wellness</a></li>
+          <li><a href="#tours">Tours & Adventures</a></li>
+          <li><a href="#learn">Classes & Learn</a></li>
+          <li><a href="#volunteer">Volunteer</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-col-title">More</p>
+        <ul class="footer-links">
+          <li><a href="#eat">Eat & Drink</a></li>
+          <li><a href="#">Fishing</a></li>
+          <li><a href="#">Nature & Wildlife</a></li>
+          <li><a href="#">Farming</a></li>
+          <li><a href="#">Coworking</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-col-title">Directory</p>
+        <ul class="footer-links">
+          <li><a href="#">Submit a Listing</a></li>
+          <li><a href="#">Advertise</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Santa Teresa Directory · Nicoya Peninsula, Costa Rica</span>
+      <a href="#">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const nav = document.querySelector('.nav');
+  window.addEventListener('scroll', () => { nav.classList.toggle('dark', window.scrollY > 50); });
+
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Filter tags
+  document.querySelectorAll('.filter-tag').forEach(tag => {
+    tag.addEventListener('click', () => {
+      document.querySelectorAll('.filter-tag').forEach(t => t.classList.remove('active'));
+      tag.classList.add('active');
+    });
+  });
+
+  // Search filter (basic)
+  const searchInput = document.querySelector('.search-input');
+  searchInput.addEventListener('input', (e) => {
+    const q = e.target.value.toLowerCase();
+    document.querySelectorAll('.listing-card').forEach(card => {
+      const text = card.textContent.toLowerCase();
+      card.style.display = text.includes(q) ? 'block' : 'none';
+    });
+  });
+</script>
+</body>
+</html>
