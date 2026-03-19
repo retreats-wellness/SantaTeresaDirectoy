@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Santa Teresa Directory — Knowledge Graph</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+html { font-size:16px; }
+body { font-family:'Barlow',sans-serif; background:#0a0a0a; color:#fff; min-height:100vh; overflow-x:hidden; }
+:root { --gold:#c9a84c; --white:#fff; --black:#0a0a0a; }
+
+/* NAV */
+.nav { position:fixed; top:0; left:0; right:0; z-index:99; background:rgba(10,10,10,0.95); backdrop-filter:blur(10px); display:flex; justify-content:space-between; align-items:center; padding:1.2rem 2.5rem; border-bottom:1px solid rgba(255,255,255,0.06); }
+.nav-logo { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:1rem; letter-spacing:0.15em; text-transform:uppercase; color:#fff; text-decoration:none; }
+.nav-logo span { color:var(--gold); }
+.nav-back { font-family:'Barlow Condensed',sans-serif; font-size:0.72rem; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; color:rgba(255,255,255,0.5); text-decoration:none; transition:color 0.2s; }
+.nav-back:hover { color:var(--gold); }
+
+/* HEADER */
+.header { padding:8rem 2.5rem 3rem; text-align:center; }
+.header-label { font-family:'Barlow Condensed',sans-serif; font-size:0.68rem; font-weight:600; letter-spacing:0.35em; text-transform:uppercase; color:var(--gold); margin-bottom:1rem; display:block; }
+.header-title { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:clamp(2.5rem,6vw,5rem); text-transform:uppercase; line-height:0.9; letter-spacing:-0.02em; color:#fff; margin-bottom:1rem; }
+.header-sub { font-size:0.88rem; color:rgba(255,255,255,0.4); max-width:480px; margin:0 auto; line-height:1.7; }
+
+/* GRAPH CONTAINER */
+.graph-wrap { position:relative; width:100%; max-width:900px; margin:0 auto; padding:2rem 1.5rem 4rem; }
+canvas { display:block; width:100%; cursor:pointer; }
+
+/* TOOLTIP */
+.tooltip { position:fixed; background:rgba(20,20,20,0.97); border:1px solid rgba(255,255,255,0.1); padding:0.8rem 1.2rem; font-family:'Barlow Condensed',sans-serif; font-size:0.78rem; letter-spacing:0.05em; text-transform:uppercase; color:#fff; pointer-events:none; opacity:0; transition:opacity 0.15s; z-index:999; white-space:nowrap; }
+.tooltip.show { opacity:1; }
+.tooltip-hint { font-family:'Barlow',sans-serif; font-size:0.65rem; text-transform:none; letter-spacing:0; color:var(--gold); margin-top:0.2rem; }
+
+/* LEGEND */
+.legend { display:flex; gap:2rem; justify-content:center; flex-wrap:wrap; padding:0 2rem 3rem; }
+.legend-item { display:flex; align-items:center; gap:0.5rem; font-family:'Barlow Condensed',sans-serif; font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; color:rgba(255,255,255,0.4); }
+.legend-dot { width:10px; height:10px; border-radius:50%; }
+
+/* CATEGORY LIST */
+.cat-list { max-width:900px; margin:0 auto; padding:0 2rem 6rem; display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:rgba(255,255,255,0.06); }
+.cat-item { background:#0f0f0f; padding:1.5rem; text-decoration:none; border-top:2px solid transparent; transition:border-color 0.2s, background 0.2s; display:flex; align-items:center; gap:1rem; }
+.cat-item:hover { border-top-color:var(--gold); background:#161616; }
+.cat-item-icon { font-size:1.4rem; flex-shrink:0; }
+.cat-item-name { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:0.95rem; text-transform:uppercase; letter-spacing:0.05em; color:#fff; }
+.cat-item-count { font-size:0.65rem; color:rgba(255,255,255,0.3); margin-top:0.2rem; font-family:'Barlow Condensed',sans-serif; letter-spacing:0.1em; text-transform:uppercase; }
+.cat-arrow { margin-left:auto; color:rgba(255,255,255,0.2); font-size:0.8rem; transition:transform 0.2s, color 0.2s; }
+.cat-item:hover .cat-arrow { transform:translateX(4px); color:var(--gold); }
+
+@media(max-width:600px) { .cat-list { grid-template-columns:1fr; } .legend { gap:1rem; } }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="santa-teresa-directory-v5.html" class="nav-logo">ST <span>Directory</span></a>
+  <a href="santa-teresa-directory-v5.html" class="nav-back">← Back to Directory</a>
+</nav>
+
+<div class="header">
+  <span class="header-label">Santa Teresa Directory</span>
+  <h1 class="header-title">Knowledge<br>Graph</h1>
+  <p class="header-sub">Every category, area, and activity on the southern Nicoya Peninsula — connected. Click any node to explore.</p>
+</div>
+
+<div class="graph-wrap">
+  <canvas id="kg" width="860" height="620"></canvas>
+</div>
+
+<div class="tooltip" id="tooltip">
+  <div id="tooltip-name"></div>
+  <div class="tooltip-hint">Click to explore →</div>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:#1D9E75"></div>Activities</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#D85A30"></div>Areas</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#c9a84c"></div>Hub</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#534AB7"></div>Special</div>
+</div>
+
+<div class="cat-list">
+  <a href="santa-teresa-directory-v5.html#surf" class="cat-item">
+    <span class="cat-item-icon">🌊</span>
+    <div><div class="cat-item-name">Surf & Ocean</div><div class="cat-item-count">8 listings</div></div>
+    <span class="cat-arrow">→</span>
+  </a>
+  <a href="santa-teresa-directory-v5.html#eat" class="cat-item">
+    <span class="cat-item-icon">🍽️</span>
+    <div><div class="cat-item-name">Eat & Drink</div><div class="cat-item-count">8 listings</div></div>
+    <span class="cat-arrow">→</span>
+  </a>
+  <a href="santa-teresa-directory-v5.html#wellness" class="cat-item">
+    <span class="cat-item-icon">🧘</span>
+    <div><div class="cat-item-name">Wellness</div><div class="cat-item-count">8 listings</div></div>
+    <span class="cat-arrow">→</span>
+  </a>
+  <a href="santa-teresa-directory-v5.html#tours" class="cat-item">
+    <span class="cat-item-icon">🗺️</span>
+    <div><div class="cat-item-name">Tours & Adventures</div><div class="cat-item-count">8 listings</div></div>
+    <span class="cat-arrow">→</span>
+  </a>
+  <a href="santa-teresa-directory-v5.html#learn" class="cat-item">
+    <span class="cat-item-icon">📚</span>
+    <div><div class="cat-item-name">Learn</div><div class="cat-item-count">8 listings</div></div>
+    <span class="cat-arrow">→</span>
+  </a>
+  <a href="santa-teresa-directory-v5.html#volunteer" class="cat-item">
+    <span class="cat-item-icon">🤝</span>
+    <div><div class="cat-item-name">Volunteer & Community</div><div class="cat-item-count">8 listings</div></div>
+    <span class="cat-arrow">→</span>
+  </a>
+  <a href="santa-teresa-directory-v5.html#" class="cat-item">
+    <span class="cat-item-icon">🎣</span>
+    <div><div class="cat-item-name">Fishing</div><div class="cat-item-count">4 listings</div></div>
+    <span class="cat-arrow">→</span>
+  </a>
+  <a href="santa-teresa-directory-v5.html#" class="cat-item">
+    <span class="cat-item-icon">🌿</span>
+    <div><div class="cat-item-name">Nature & Wildlife</div><div class="cat-item-count">8 listings</div></div>
+    <span class="cat-arrow">→</span>
+  </a>
+  <a href="santa-teresa-directory-v5.html#" class="cat-item">
+    <span class="cat-item-icon">🌱</span>
+    <div><div class="cat-item-name">Farming & Growing</div><div class="cat-item-count">4 listings</div></div>
+    <span class="cat-arrow">→</span>
+  </a>
+  <a href="santa-teresa-directory-v5.html#" class="cat-item">
+    <span class="cat-item-icon">💻</span>
+    <div><div class="cat-item-name">Coworking & Nomad</div><div class="cat-item-count">4 listings</div></div>
+    <span class="cat-arrow">→</span>
+  </a>
+</div>
+
+<script>
+const canvas = document.getElementById('kg');
+const ctx = canvas.getContext('2d');
+const tooltip = document.getElementById('tooltip');
+const tooltipName = document.getElementById('tooltip-name');
+
+// Scale canvas for retina
+const dpr = window.devicePixelRatio || 1;
+const W = canvas.offsetWidth;
+const H = 620;
+canvas.width = W * dpr;
+canvas.height = H * dpr;
+canvas.style.width = W + 'px';
+canvas.style.height = H + 'px';
+ctx.scale(dpr, dpr);
+
+// Node definitions
+const cx = W / 2;
+const cy = H / 2;
+
+const nodes = [
+  // Hub
+  { id:'hub', label:'Santa Teresa', sub:'Directory', x:cx, y:cy, r:38, color:'#c9a84c', textColor:'#0a0a0a', href:null, type:'hub' },
+
+  // Categories — orbit 1
+  { id:'surf',      label:'🌊 Surf',       x:cx,       y:cy-180, r:28, color:'#0F6E56', textColor:'#9FE1CB', href:'santa-teresa-directory-v5.html#surf',      type:'cat' },
+  { id:'eat',       label:'🍽️ Eat',        x:cx+170,   y:cy-90,  r:28, color:'#0F6E56', textColor:'#9FE1CB', href:'santa-teresa-directory-v5.html#eat',       type:'cat' },
+  { id:'wellness',  label:'🧘 Wellness',   x:cx+170,   y:cy+90,  r:28, color:'#0F6E56', textColor:'#9FE1CB', href:'santa-teresa-directory-v5.html#wellness',  type:'cat' },
+  { id:'tours',     label:'🗺️ Tours',      x:cx,       y:cy+180, r:28, color:'#993C1D', textColor:'#F5C4B3', href:'santa-teresa-directory-v5.html#tours',     type:'cat' },
+  { id:'learn',     label:'📚 Learn',      x:cx-170,   y:cy+90,  r:28, color:'#3C3489', textColor:'#CECBF6', href:'santa-teresa-directory-v5.html#learn',     type:'cat' },
+  { id:'volunteer', label:'🤝 Volunteer',  x:cx-170,   y:cy-90,  r:28, color:'#3C3489', textColor:'#CECBF6', href:'santa-teresa-directory-v5.html#volunteer', type:'cat' },
+
+  // Areas — orbit 2
+  { id:'st',        label:'Santa Teresa',  x:cx+80,    y:cy-270, r:20, color:'#993C1D', textColor:'#F5C4B3', href:'santa-teresa-directory-v5.html', type:'area' },
+  { id:'malpais',   label:'Mal Pais',      x:cx+270,   y:cy-80,  r:20, color:'#993C1D', textColor:'#F5C4B3', href:'santa-teresa-directory-v5.html', type:'area' },
+  { id:'hermosa',   label:'Playa Hermosa', x:cx+260,   y:cy+110, r:20, color:'#993C1D', textColor:'#F5C4B3', href:'santa-teresa-directory-v5.html', type:'area' },
+  { id:'cabuya',    label:'Cabuya',        x:cx-80,    y:cy+270, r:20, color:'#993C1D', textColor:'#F5C4B3', href:'santa-teresa-directory-v5.html', type:'area' },
+  { id:'manzanillo',label:'Manzanillo',    x:cx-270,   y:cy+80,  r:20, color:'#993C1D', textColor:'#F5C4B3', href:'santa-teresa-directory-v5.html', type:'area' },
+
+  // Special nodes
+  { id:'fishing',   label:'🎣 Fishing',    x:cx-270,   y:cy-80,  r:20, color:'#444',    textColor:'#ccc',    href:'santa-teresa-directory-v5.html', type:'special' },
+  { id:'nature',    label:'🌿 Nature',     x:cx-80,    y:cy-270, r:20, color:'#444',    textColor:'#ccc',    href:'santa-teresa-directory-v5.html', type:'special' },
+  { id:'farming',   label:'🌱 Farming',    x:cx+260,   y:cy-110, r:20, color:'#444',    textColor:'#ccc',    href:'santa-teresa-directory-v5.html', type:'special' },
+];
+
+// Edges
+const edges = [
+  // Hub to categories
+  ['hub','surf'], ['hub','eat'], ['hub','wellness'],
+  ['hub','tours'], ['hub','learn'], ['hub','volunteer'],
+  // Hub to areas
+  ['hub','st'], ['hub','malpais'], ['hub','hermosa'],
+  ['hub','cabuya'], ['hub','manzanillo'],
+  // Hub to special
+  ['hub','fishing'], ['hub','nature'], ['hub','farming'],
+  // Cross connections
+  ['surf','st'], ['surf','malpais'], ['surf','hermosa'],
+  ['eat','st'], ['wellness','st'], ['wellness','malpais'],
+  ['tours','cabuya'], ['tours','manzanillo'], ['tours','malpais'],
+  ['learn','st'], ['volunteer','cabuya'], ['volunteer','manzanillo'],
+  ['fishing','malpais'], ['nature','cabuya'], ['farming','manzanillo'],
+];
+
+let hoveredNode = null;
+let animFrame = 0;
+
+function getNode(id) { return nodes.find(n => n.id === id); }
+
+function drawEdge(a, b, alpha) {
+  ctx.beginPath();
+  ctx.moveTo(a.x, a.y);
+  ctx.lineTo(b.x, b.y);
+  ctx.strokeStyle = `rgba(255,255,255,${alpha})`;
+  ctx.lineWidth = 0.5;
+  ctx.stroke();
+}
+
+function drawNode(node, hovered) {
+  const scale = hovered ? 1.15 : 1;
+  const r = node.r * scale;
+
+  // Glow on hover
+  if (hovered && node.href) {
+    ctx.beginPath();
+    ctx.arc(node.x, node.y, r + 8, 0, Math.PI * 2);
+    ctx.fillStyle = node.color + '22';
+    ctx.fill();
+  }
+
+  // Circle
+  ctx.beginPath();
+  ctx.arc(node.x, node.y, r, 0, Math.PI * 2);
+  ctx.fillStyle = node.color;
+  ctx.fill();
+  ctx.strokeStyle = hovered ? '#fff' : node.color + 'aa';
+  ctx.lineWidth = hovered ? 1.5 : 1;
+  ctx.stroke();
+
+  // Label
+  ctx.fillStyle = node.textColor;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+
+  if (node.type === 'hub') {
+    ctx.font = `700 13px 'Barlow Condensed', sans-serif`;
+    ctx.fillText(node.label, node.x, node.y - 6);
+    ctx.font = `400 10px 'Barlow Condensed', sans-serif`;
+    ctx.fillStyle = node.textColor + 'aa';
+    ctx.fillText(node.sub, node.x, node.y + 8);
+  } else if (node.type === 'cat') {
+    ctx.font = `600 11px 'Barlow Condensed', sans-serif`;
+    // Split emoji and text
+    const parts = node.label.split(' ');
+    const emoji = parts[0];
+    const text = parts.slice(1).join(' ');
+    ctx.fillText(emoji, node.x, node.y - 6);
+    ctx.font = `600 10px 'Barlow Condensed', sans-serif`;
+    ctx.fillText(text, node.x, node.y + 7);
+  } else {
+    // Small nodes — just label below
+    ctx.font = `500 9px 'Barlow Condensed', sans-serif`;
+    ctx.fillStyle = 'rgba(255,255,255,0.6)';
+    ctx.fillText(node.label, node.x, node.y + node.r + 12);
+  }
+}
+
+function draw() {
+  ctx.clearRect(0, 0, W, H);
+
+  // Draw edges
+  edges.forEach(([aid, bid]) => {
+    const a = getNode(aid);
+    const b = getNode(bid);
+    if (!a || !b) return;
+    const isActive = hoveredNode && (hoveredNode.id === aid || hoveredNode.id === bid);
+    drawEdge(a, b, isActive ? 0.25 : 0.07);
+  });
+
+  // Draw nodes (hub last so it's on top)
+  const sorted = [...nodes].sort((a,b) => a.type === 'hub' ? 1 : -1);
+  sorted.forEach(node => {
+    drawNode(node, hoveredNode && hoveredNode.id === node.id);
+  });
+}
+
+// Interaction
+function getHovered(mx, my) {
+  return nodes.find(n => {
+    const dx = mx - n.x;
+    const dy = my - n.y;
+    return Math.sqrt(dx*dx + dy*dy) < n.r + 6;
+  }) || null;
+}
+
+canvas.addEventListener('mousemove', e => {
+  const rect = canvas.getBoundingClientRect();
+  const mx = (e.clientX - rect.left);
+  const my = (e.clientY - rect.top);
+  hoveredNode = getHovered(mx, my);
+  canvas.style.cursor = (hoveredNode && hoveredNode.href) ? 'pointer' : 'default';
+  if (hoveredNode) {
+    tooltipName.textContent = hoveredNode.label.replace(/^[^\s]+\s/, '');
+    tooltip.querySelector('.tooltip-hint').style.display = hoveredNode.href ? 'block' : 'none';
+    tooltip.classList.add('show');
+    tooltip.style.left = (e.clientX + 16) + 'px';
+    tooltip.style.top = (e.clientY - 10) + 'px';
+  } else {
+    tooltip.classList.remove('show');
+  }
+  draw();
+});
+
+canvas.addEventListener('mouseleave', () => {
+  hoveredNode = null;
+  tooltip.classList.remove('show');
+  draw();
+});
+
+canvas.addEventListener('click', e => {
+  const rect = canvas.getBoundingClientRect();
+  const mx = e.clientX - rect.left;
+  const my = e.clientY - rect.top;
+  const node = getHovered(mx, my);
+  if (node && node.href) {
+    window.location.href = node.href;
+  }
+});
+
+// Touch support
+canvas.addEventListener('touchstart', e => {
+  e.preventDefault();
+  const rect = canvas.getBoundingClientRect();
+  const touch = e.touches[0];
+  const mx = touch.clientX - rect.left;
+  const my = touch.clientY - rect.top;
+  const node = getHovered(mx, my);
+  if (node && node.href) window.location.href = node.href;
+}, { passive: false });
+
+draw();
+</script>
+</body>
+</html>
