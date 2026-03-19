@@ -138,6 +138,7 @@ footer { background: var(--black); padding: 5rem 3rem 2.5rem; border-top: 1px so
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
   .search-bar { padding: 1.5rem; top: 0; }
 }
+@media (max-width: 960px) { .kg-wrap { grid-template-columns: 1fr !important; } }
 @media (max-width: 600px) {
   .listing-grid { grid-template-columns: 1fr; }
   .area-grid { grid-template-columns: 1fr; }
@@ -157,6 +158,7 @@ footer { background: var(--black); padding: 5rem 3rem 2.5rem; border-top: 1px so
     <a href="#tours">Tours</a>
     <a href="#learn">Learn</a>
     <a href="#volunteer">Volunteer</a>
+    <a href="knowledge-graph.html" style="font-family:'Barlow Condensed',sans-serif;font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.6);text-decoration:none;" >Knowledge Graph</a>
     <a href="#" class="btn btn-nav">List Your Business</a>
   </div>
 </nav>
@@ -203,7 +205,7 @@ footer { background: var(--black); padding: 5rem 3rem 2.5rem; border-top: 1px so
 <!-- ─────────────────────────────────────────────── -->
 <!-- SURF & WATER SPORTS -->
 <!-- ─────────────────────────────────────────────── -->
-<div id="surf" style="display:block;height:80px;margin-top:-80px;visibility:hidden;"></div>
+<div id="surf" style="display:block;height:1px;visibility:hidden;scroll-margin-top:175px;"></div>
 <div class="cat-section">
   <div class="inner">
     <div class="cat-header">
@@ -271,7 +273,7 @@ footer { background: var(--black); padding: 5rem 3rem 2.5rem; border-top: 1px so
 </div>
 
 <!-- EAT & DRINK -->
-<div id="eat" style="display:block;height:80px;margin-top:-80px;visibility:hidden;"></div>
+<div id="eat" style="display:block;height:1px;visibility:hidden;scroll-margin-top:175px;"></div>
 <div class="cat-section section-offwhite">
   <div class="inner">
     <div class="cat-header">
@@ -339,7 +341,7 @@ footer { background: var(--black); padding: 5rem 3rem 2.5rem; border-top: 1px so
 </div>
 
 <!-- WELLNESS -->
-<div id="wellness" style="display:block;height:80px;margin-top:-80px;visibility:hidden;"></div>
+<div id="wellness" style="display:block;height:1px;visibility:hidden;scroll-margin-top:175px;"></div>
 <div class="cat-section">
   <div class="inner">
     <div class="cat-header">
@@ -420,7 +422,7 @@ footer { background: var(--black); padding: 5rem 3rem 2.5rem; border-top: 1px so
 </div>
 
 <!-- TOURS & ADVENTURES -->
-<div id="tours" style="display:block;height:80px;margin-top:-80px;visibility:hidden;"></div>
+<div id="tours" style="display:block;height:1px;visibility:hidden;scroll-margin-top:175px;"></div>
 <div class="cat-section section-offwhite">
   <div class="inner">
     <div class="cat-header">
@@ -531,7 +533,7 @@ footer { background: var(--black); padding: 5rem 3rem 2.5rem; border-top: 1px so
 </div>
 
 <!-- LEARN -->
-<div id="learn" style="display:block;height:80px;margin-top:-80px;visibility:hidden;"></div>
+<div id="learn" style="display:block;height:1px;visibility:hidden;scroll-margin-top:175px;"></div>
 <div class="cat-section section-offwhite">
   <div class="inner">
     <div class="cat-header">
@@ -680,7 +682,7 @@ footer { background: var(--black); padding: 5rem 3rem 2.5rem; border-top: 1px so
 </div>
 
 <!-- VOLUNTEER & COMMUNITY -->
-<div id="volunteer" style="display:block;height:80px;margin-top:-80px;visibility:hidden;"></div>
+<div id="volunteer" style="display:block;height:1px;visibility:hidden;scroll-margin-top:175px;"></div>
 <div class="cat-section">
   <div class="inner">
     <div class="cat-header">
@@ -866,7 +868,7 @@ footer { background: var(--black); padding: 5rem 3rem 2.5rem; border-top: 1px so
 <!-- KNOWLEDGE GRAPH -->
 <section style="background:#0a0a0a;padding:7rem 3rem;">
   <div class="inner">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;" class="kg-wrap">
       <div>
         <span class="label">How the Directory Works</span>
         <h2 class="heading-lg" style="color:#fff;">One peninsula.<br>Every connection.</h2>
@@ -979,21 +981,7 @@ footer { background: var(--black); padding: 5rem 3rem 2.5rem; border-top: 1px so
 </footer>
 
 <script>
-  // Smooth scroll with offset for sticky nav + search bar
-  document.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener('click', function(e) {
-      const id = this.getAttribute('href');
-      if (id === '#') return;
-      const target = document.querySelector(id);
-      if (!target) return;
-      e.preventDefault();
-      const top = target.getBoundingClientRect().top + window.scrollY - 180;
-      window.scrollTo({ top, behavior: 'smooth' });
-      // Make target visible immediately
-      target.classList.add('visible');
-      target.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
-    });
-  });
+
 
   const nav = document.querySelector('.nav');
   window.addEventListener('scroll', () => { nav.classList.toggle('dark', window.scrollY > 50); });
