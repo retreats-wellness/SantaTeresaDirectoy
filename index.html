@@ -203,7 +203,7 @@ footer { background: var(--black); padding: 5rem 3rem 2.5rem; border-top: 1px so
 <!-- ─────────────────────────────────────────────── -->
 <!-- SURF & WATER SPORTS -->
 <!-- ─────────────────────────────────────────────── -->
-<div class="cat-section reveal" id="surf">
+<div class="cat-section" id="surf">
   <div class="inner">
     <div class="cat-header">
       <div class="cat-title-group">
@@ -270,7 +270,7 @@ footer { background: var(--black); padding: 5rem 3rem 2.5rem; border-top: 1px so
 </div>
 
 <!-- EAT & DRINK -->
-<div class="cat-section section-offwhite reveal" id="eat">
+<div class="cat-section section-offwhite" id="eat">
   <div class="inner">
     <div class="cat-header">
       <div class="cat-title-group">
@@ -337,7 +337,7 @@ footer { background: var(--black); padding: 5rem 3rem 2.5rem; border-top: 1px so
 </div>
 
 <!-- WELLNESS -->
-<div class="cat-section reveal" id="wellness">
+<div class="cat-section" id="wellness">
   <div class="inner">
     <div class="cat-header">
       <div class="cat-title-group">
@@ -417,7 +417,7 @@ footer { background: var(--black); padding: 5rem 3rem 2.5rem; border-top: 1px so
 </div>
 
 <!-- TOURS & ADVENTURES -->
-<div class="cat-section section-offwhite reveal" id="tours">
+<div class="cat-section section-offwhite" id="tours">
   <div class="inner">
     <div class="cat-header">
       <div class="cat-title-group">
@@ -484,7 +484,7 @@ footer { background: var(--black); padding: 5rem 3rem 2.5rem; border-top: 1px so
 </div>
 
 <!-- FISHING -->
-<div class="cat-section reveal">
+<div class="cat-section">
   <div class="inner">
     <div class="cat-header">
       <div class="cat-title-group">
@@ -527,7 +527,7 @@ footer { background: var(--black); padding: 5rem 3rem 2.5rem; border-top: 1px so
 </div>
 
 <!-- LEARN -->
-<div class="cat-section section-offwhite reveal" id="learn">
+<div class="cat-section section-offwhite" id="learn">
   <div class="inner">
     <div class="cat-header">
       <div class="cat-title-group">
@@ -594,7 +594,7 @@ footer { background: var(--black); padding: 5rem 3rem 2.5rem; border-top: 1px so
 </div>
 
 <!-- NATURE & WILDLIFE -->
-<div class="cat-section reveal">
+<div class="cat-section">
   <div class="inner">
     <div class="cat-header">
       <div class="cat-title-group">
@@ -675,7 +675,7 @@ footer { background: var(--black); padding: 5rem 3rem 2.5rem; border-top: 1px so
 </div>
 
 <!-- VOLUNTEER & COMMUNITY -->
-<div class="cat-section reveal" id="volunteer">
+<div class="cat-section" id="volunteer">
   <div class="inner">
     <div class="cat-header">
       <div class="cat-title-group">
@@ -742,7 +742,7 @@ footer { background: var(--black); padding: 5rem 3rem 2.5rem; border-top: 1px so
 </div>
 
 <!-- FARMING & LAND -->
-<div class="cat-section section-offwhite reveal">
+<div class="cat-section section-offwhite">
   <div class="inner">
     <div class="cat-header">
       <div class="cat-title-group">
@@ -815,7 +815,7 @@ footer { background: var(--black); padding: 5rem 3rem 2.5rem; border-top: 1px so
 </section>
 
 <!-- COWORKING & DIGITAL NOMAD -->
-<div class="cat-section reveal">
+<div class="cat-section">
   <div class="inner">
     <div class="cat-header">
       <div class="cat-title-group">
@@ -926,6 +926,9 @@ footer { background: var(--black); padding: 5rem 3rem 2.5rem; border-top: 1px so
       e.preventDefault();
       const top = target.getBoundingClientRect().top + window.scrollY - 180;
       window.scrollTo({ top, behavior: 'smooth' });
+      // Make target visible immediately
+      target.classList.add('visible');
+      target.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
     });
   });
 
